@@ -13,5 +13,22 @@ module.exports = {
 
   devtool: "source-map",
 
-  module: {}
+  module: {
+    rules: [
+      {
+        test: /\.m?js$/,// regularniy vrajenie s pomoshyu etoqo mi naxodim js papku
+        exclude: /(node_modules|bower_components)/, ///kakie papki budut iskluceni
+        use: {   /// kak i cto mi budem ispolzovat
+          loader: 'babel-loader',
+          options: {
+            presets: [['@babel/preset-env', {// eto podxodit pocti na vse browsers
+              debug: true,
+              corejs: 3,
+              useBuiltIns: "usage"
+            }]]
+          }
+        }
+      }
+    ]
+  }
 };
